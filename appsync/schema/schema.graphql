@@ -1,0 +1,22 @@
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type Mutation {
+  putPost(id: ID, tweet: String!): Post
+}
+
+type Post {
+  id: ID
+  tweet: String!
+}
+
+type Query {
+  singlePost(id: ID!): Post
+}
+
+type Subscription {
+  onPutPost: Post @aws_subscribe(mutations : ["putPost"])
+}
